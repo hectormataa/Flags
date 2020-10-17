@@ -5,12 +5,19 @@ html,body{
     margin: 0;
     font-family: 'Poppins'
 }
-
-#principal {
-    
+body{
+    background-color: black;
 }
 
-
-
-
+#principal{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        background-color :#3D3434;
+        
+        img{
+            justify-content: center;
+        }
+}
 
