@@ -1,22 +1,43 @@
-import axios from 'axios';  //axios es similar a requests(callbacks), axios usa promesas
+import axios from "axios"; //axios es similar a requests(callbacks), axios usa promesas
+//import Trivia from './trivia'
+import "./styles/main.scss";
 
-import './styles/main.scss';
+let category = document.getElementById("trivia_category");
+let difficulty = document.getElementById("trivia_difficulty");
+let type = document.getElementById("trivia_type");
+let begin = document.getElementById("begin");
+let URL = "https://opentdb.com/api.php?amount=10";
+let newURL = "";
 
-function init(){
-    //aqui voy hacer la llamada a la API por los datos
+begin.addEventListener("click", () => {
+  console.log("Le di click");
 
-    axios.get('https://restcountries.eu/rest/v2/all')
-        .then((response) => {
-            //Aqui ya obtengo mis paises
-            console.log(response.status) //status code de la peticion
-            console.log(response.data) //data es donde viene la informacion que busco
-            const game = new Game(response.data)
-            game.start()
-        })
-        .catch((error) => {
-            //console.log("aca esta el error", error.response.status)
-         //aqui paso un error al tratar de traer los paises
-        })
-}
+  let categoryURL = "";
+  let difficultyURL = "";
+  let typeURL = "";
 
-init();
+  if (category.value !== "any") {
+    categoryURL = `&category=${category.value}`;
+  } 
+  if (difficulty.value !== "any") {
+    difficultyURL = `&difficulty=${difficulty.value}`;
+  }
+  if (type.value !== "any") {
+    typeURL = `&type=${type.value}`;
+  }
+
+    return newURL = `${URL}${categoryURL}${difficultyURL}${typeURL}`;
+  
+    console.log(newURL);
+
+ console.log(category.value);
+ console.log(difficulty.value);
+ console.log(type.value);
+
+
+  //https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple
+
+});
+
+
+
