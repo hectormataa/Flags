@@ -2,6 +2,11 @@ import axios from "axios"; //axios es similar a requests(callbacks), axios usa p
 //import Trivia from './trivia'
 import "./styles/main.scss";
 
+// Esta es la funcion para evitar que se recargue en el submit xd
+
+
+
+
 let category = document.getElementById("trivia_category");
 let difficulty = document.getElementById("trivia_difficulty");
 let type = document.getElementById("trivia_type");
@@ -41,3 +46,11 @@ begin.addEventListener("click", () => {
 
 
 
+function logSubmit(event) {
+ 
+  event.preventDefault();
+}
+
+const form = document.getElementById('form');
+
+form.addEventListener('submit', logSubmit);
