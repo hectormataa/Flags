@@ -30,21 +30,23 @@ begin.addEventListener("click", () => {
   if (type.value !== "any") {
     typeURL = `&type=${type.value}`;
   }
-
+  console.log(category.value);
+console.log(difficulty.value);
+console.log(type.value);
     return newURL = `${URL}${categoryURL}${difficultyURL}${typeURL}`;
   
     console.log(newURL);
 
- console.log(category.value);
- console.log(difficulty.value);
- console.log(type.value);
 
 
   //https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple
 
 });
 
-
+console.log(newURL);
+console.log(category.value);
+console.log(difficulty.value);
+console.log(type.value);
 
 function logSubmit(event) {
  
