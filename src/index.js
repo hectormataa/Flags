@@ -1,58 +1,52 @@
 import axios from "axios"; //axios es similar a requests(callbacks), axios usa promesas
-//import Trivia from './trivia'
+import Trivia from './trivia'
 import "./styles/main.scss";
 
-// Esta es la funcion para evitar que se recargue en el submit xd
 
-
-
-
+let URL = "https://opentdb.com/api.php?amount=10";
 let category = document.getElementById("trivia_category");
 let difficulty = document.getElementById("trivia_difficulty");
 let type = document.getElementById("trivia_type");
-let begin = document.getElementById("begin");
-let URL = "https://opentdb.com/api.php?amount=10";
+let categoryURL = "";
+let difficultyURL = "";
+let typeURL = "";
 let newURL = "";
 
-begin.addEventListener("click", () => {
-  console.log("Le di click");
+function getURL() {
+    if (category.value !== "any") {
+        categoryURL = `&category=${category.value}`;
+    }
+    if (difficulty.value !== "any") {
+        difficultyURL = `&difficulty=${difficulty.value}`;
+    }
+    if (type.value !== "any") {
+        typeURL = `&type=${type.value}`;
+    }
 
-  let categoryURL = "";
-  let difficultyURL = "";
-  let typeURL = "";
-
-  if (category.value !== "any") {
-    categoryURL = `&category=${category.value}`;
-  } 
-  if (difficulty.value !== "any") {
-    difficultyURL = `&difficulty=${difficulty.value}`;
-  }
-  if (type.value !== "any") {
-    typeURL = `&type=${type.value}`;
-  }
-  console.log(category.value);
-console.log(difficulty.value);
-console.log(type.value);
-    return newURL = `${URL}${categoryURL}${difficultyURL}${typeURL}`;
-  
-    console.log(newURL);
-
-
-
-  //https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple
-
-});
-
-console.log(newURL);
-console.log(category.value);
-console.log(difficulty.value);
-console.log(type.value);
-
-function logSubmit(event) {
- 
-  event.preventDefault();
+    return (newURL = `${URL}${categoryURL}${difficultyURL}${typeURL}`,
+    console.log(newURL))
 }
 
-const form = document.getElementById('form');
 
-form.addEventListener('submit', logSubmit);
+begin.addEventListener("click", (event) => {
+    console.log("Le di click");
+    event.preventDefault();
+
+    getURL();
+
+    function init() {
+        //aqui voy hacer la llamada a la API por los datos
+        axios.get(newURL)
+            .then((response) => {
+                console.log(response.status)
+                console.log(response.data)
+                const trivia = new Trivia(response.data)
+                trivia.start()
+            }).catch((error) => {
+                console.log("Error:", error);
+                return error;
+            });
+
+    }
+    init();
+});

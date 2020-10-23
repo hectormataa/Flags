@@ -1,22 +1,22 @@
-// class Trivia{
-//     constructor(questions){
-//         this.type = type;
-//         this.question = question;
-//         this.incorrect = incorrect;
-//         this.correct = correct;
-//         this.numberofQuestions = numberofQuestions;
-//         this.category = category;
-//         this.score = score;
-//         this.dificulty = dificulty
-//     }
-//     generateRandomNumber(number){ //getters 
-//         //Este va a generar un numero random para si es de 4 opciones o 2
-//         return Math.floor(Math.random() * number)
-//     }
+class Trivia {
+    constructor(questions) {
+        this.questions = questions;
+        this.question = "";
+        this.correctAnswer = "";
+        this.score = 0;
+    }
 
-//     get oneQuestion()
     
+    getCorrectAnswer() {
+        return this.correctAnswer = this.questions.results[0].correct_answer
+    }
 
+    start() {
+        const respuesta = document.querySelector()
+        const pregunta = document.getElementById('pregunta');
+        pregunta.innerHTML = this.questions.results[0].question;
+    }
 
-// }
+}
 
+export default Trivia;
